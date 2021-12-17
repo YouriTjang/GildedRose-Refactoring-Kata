@@ -62,70 +62,17 @@ internal class GildedRoseTest {
         assertEquals(9, app.items[0].quality)
     }
 
-    @Test
-    fun `Backstage passes increases by one in Quality when the sellIn is greater than 10`() {
-        val items = arrayOf<Item>(
-            Item("Backstage passes to a TAFKAL80ETC concert", 11, 8),
-            Item("Backstage passes to a TAFKAL80ETC concert", 100, 8),
-        )
-
-        val app = GildedRose(items)
-        app.updateQuality()
-        assertEquals(9, app.items[0].quality)
-        assertEquals(9, app.items[1].quality)
-    }
-
-    @Test
-    fun `Backstage passes actually increases by two in Quality when the sellIn is between 10 and 5`() {
-        val items = arrayOf<Item>(
-            Item("Backstage passes to a TAFKAL80ETC concert", 10, 8),
-            Item("Backstage passes to a TAFKAL80ETC concert", 6, 8),
-        )
-
-        val app = GildedRose(items)
-        app.updateQuality()
-        assertEquals(10, app.items[0].quality)
-        assertEquals(10, app.items[1].quality)
-    }
-
-    @Test
-    fun `Backstage passes actually increases by three in Quality when the sellIn lower than 5`() {
-        val items = arrayOf<Item>(
-            Item("Backstage passes to a TAFKAL80ETC concert", 5, 8),
-            Item("Backstage passes to a TAFKAL80ETC concert", 1, 8),
-        )
-
-        val app = GildedRose(items)
-        app.updateQuality()
-        assertEquals(11, app.items[0].quality)
-        assertEquals(11, app.items[1].quality)
-    }
-
-    @Test
-    fun `Backstage passes Quality drops to 0 after the concert`() {
-        val items = arrayOf<Item>(
-            Item("Backstage passes to a TAFKAL80ETC concert", 0, 8),
-            Item("Backstage passes to a TAFKAL80ETC concert", -1, 8),
-        )
-
-        val app = GildedRose(items)
-        app.updateQuality()
-        assertEquals(0, app.items[0].quality)
-        assertEquals(0, app.items[1].quality)
-    }
 
     @Test
     fun `The Quality of an item is never more than 50`() {
         val items = arrayOf<Item>(
             Item("Aged Brie", 10, 50),
-            Item("Backstage passes to a TAFKAL80ETC concert", 1, 50),
             Item("Aged Brie", 0, 48))
 
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(50, app.items[0].quality)
         assertEquals(50, app.items[1].quality)
-        assertEquals(50, app.items[2].quality)
     }
 
     @Test
@@ -140,14 +87,14 @@ internal class GildedRoseTest {
         assertEquals(80, app.items[0].quality)
     }
 
-    @Test
-    fun `tryout normalItem`() {
-        val normalItem = NormalItem("foo", 1, 1)
-        normalItem.passDay()
-        assertEquals("foo", normalItem.name)
-        assertEquals(0, normalItem.quality)
-        assertEquals(0, normalItem.sellIn)
-    }
+//    @Test
+//    fun `tryout normalItem`() {
+//        val normalItem = NormalItem("foo", 1, 1)
+//        normalItem.passDay()
+//        assertEquals("foo", normalItem.name)
+//        assertEquals(0, normalItem.quality)
+//        assertEquals(0, normalItem.sellIn)
+//    }
 
     fun Item.build(name: String, sellIn: Int, quality: Int): String =
         "foo"

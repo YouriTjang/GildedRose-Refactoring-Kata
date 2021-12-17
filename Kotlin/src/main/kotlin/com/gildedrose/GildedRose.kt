@@ -15,20 +15,17 @@ class GildedRose(var items: Array<Item>) {
             when (items[i].name) {
                 //BRIE -> {}
                 BACKSTAGE -> {
-                    items[i].quality++
 
-                    if (items[i].sellIn < 6) {
-                        items[i].quality += 2
-                    } else if (items[i].sellIn < 11) {
-                        items[i].quality++
+                    when (items[i].sellIn) {
+                        in 1..5 -> items[i].quality += 3
+                        in 6..10 -> items[i].quality += 2
+                        in 11..10000000 -> items[i].quality++
+                        else -> items[i].quality = 0
                     }
+                    items[i].quality = min(50, items[i].quality)
+
                     items[i].sellIn--
 
-                    if (items[i].sellIn < 0) {
-                        items[i].quality = 0
-                    }
-
-                    items[i].quality = min(50, items[i].quality)
                 } // end backstage
                 SULFURAS -> {}
                 else -> {

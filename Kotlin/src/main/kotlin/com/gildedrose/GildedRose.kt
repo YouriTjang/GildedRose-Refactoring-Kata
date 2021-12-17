@@ -53,6 +53,5 @@ class GildedRose(var items: Array<Item>) {
             }
         }
     }
-
 }
 
